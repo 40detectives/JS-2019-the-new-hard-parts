@@ -145,19 +145,29 @@ function sumFunc(arr) {
     Create an iterator that returns each word from a string of words on the call of its .next method (hint: use regex!)
     Then attach it as a method to the prototype of a constructor Words. Hint: research Symbol.iterator!
   */
+
+  console.log("%c=== CHALLENGE 6 ===", "font-weight: bold; color: DeepPink");
   function Words(string) {
     this.str = string;
   }
   
   Words.prototype[Symbol.iterator] = function() {
-    // YOUR CODE HERE
-  
-  }
+    let idx = 0;
+    const innerStorage = this.str.match(/\S+/g);
+    return {
+        next() {
+            return (idx < innerStorage.length)
+              ? {done: false, value: innerStorage[idx++]}
+              : {done: true};
+        }
+    }
+  };
   
   // Uncomment the lines below to test your work
-  // const helloWorld = new Words('Hello World');
-  // for (word of helloWorld) { console.log(word); } // -> should log 'Hello' and 'World'
+  const helloWorld = new Words('Hello World');
+  for (const word of helloWorld) { console.log(word); } // -> should log 'Hello' and 'World'
   
+
   // CHALLENGE 7
   /*
     Build a function that walks through an array and returns the element concatenated with the string "was found after 
@@ -165,8 +175,16 @@ function sumFunc(arr) {
     Note: if it is the first element it should say that it is the first
   */
   
+  console.log("%c=== CHALLENGE 7 ===", "font-weight: bold; color: DeepPink");
   function valueAndPrevIndex(array){
-  
+    let i= 0;
+    return {
+        sentence() {
+            return (i > 0) 
+                ? `${array[i++]} was found after index ${i-2}`
+                : `${array[i++]} is the first element`;
+        }
+    }
   }
   
   const returnedSentence = valueAndPrevIndex([4,5,6])
@@ -181,8 +199,14 @@ function sumFunc(arr) {
     passed into the function is 'english'.
     Do not use any type of loop constructor and only make the call to createConversation once.
   */
+
+  console.log("%c=== CHALLENGE 8 ===", "font-weight: bold; color: DeepPink");
   function* createConversation(string) {
-  
+    return {
+        next() {
+            if (srting === 'hello there') {}
+        }
+    }
   
   }
   
@@ -196,6 +220,9 @@ function sumFunc(arr) {
     noun, concatenates it with a hard coded verb and returns it to the async function to be console.logged after a 
     duration of 3 seconds. Call the async function only once, feeding it a noun to make this happen.
   */
+
+  console.log("%c=== CHALLENGE 9 ===", "font-weight: bold; color: DeepPink");
+
   function waitForVerb(noun) {
   
   }
