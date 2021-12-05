@@ -202,15 +202,20 @@ function sumFunc(arr) {
 
   console.log("%c=== CHALLENGE 8 ===", "font-weight: bold; color: DeepPink");
   function* createConversation(string) {
-    return {
-        next() {
-            if (srting === 'hello there') {}
-        }
-    }
-  
+    yield new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(string === 'english' ? 'hello there' : 'gibberish');
+      }, 3000);
+    });
   }
   
-  console.log(createConversation('english').next());
+  const iterator = createConversation(Math.random() > 0 ? 'english' : 'xxx');
+
+  function dialogLine(text) {
+    iterator.next(text);
+  }
+
+  console.log(iterator.next().value.then(dialogLine));
   
   
   
